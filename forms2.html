@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario</title>
+</head>
+<body>
+    <h1>Formulario de Registro</h1>
+    <form onsubmit="validarFormulario(event)">
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre"><br><br>
+
+        <label>Género:</label><br>
+        <input type="radio" id="m" name="genero" value="m"> Masculino
+        <input type="radio" id="f" name="genero" value="f"> Femenino<br><br>
+
+        <label for="pais">País:</label><br>
+        <select id="pais" name="pais">
+            <option value="">Selecciona</option>
+            <option value="mx">México</option>
+            <option value="ar">Argentina</option>
+        </select><br><br>
+
+        <label for="fecha">Fecha:</label><br>
+        <input type="date" id="fecha" name="fecha"><br><br>
+
+        <label for="tel">Telefono:<br />
+        <small>Format: 123-456-7890</small>
+        </label><br> 
+        <input type="tel" 
+        id="tel" 
+        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+        required /><br><br> 
+
+        <input type="checkbox" id="acepto">
+        <label for="acepto">Acepto los términos</label><br><br>
+
+        <button type="submit">Enviar</button>
+
+    </form>
+
+    <script>
+        function validarFormulario(event) {
+            event.preventDefault();
+            const nombre = document.getElementById("nombre").value;
+            const genero = document.querySelector('input[name="genero"]:checked');
+            const pais = document.getElementById("pais").value;
+            const fecha = document.getElementById("fecha").value;
+            const telefono = document.getElementById("tel").value;
+            const acepto = document.getElementById("acepto").checked;
+
+            if (nombre === "" || !genero || pais === "" || fecha === "" || telefono === "" ||!acepto) {
+                alert("Todos los campos son obligatorios");
+                return;
+            }
+            alert("Formulario válido");
+        }
+    </script>
+</body>
+</html>
