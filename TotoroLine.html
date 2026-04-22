@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Totoro Line - Registro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-green: #2ecc71;
+            --input-green: #5effa3;
+            --dark-green: #27ae60;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-image: url('ghibli_museum.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.98);
+            width: 100%;
+            max-width: 950px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        header {
+            background-color: var(--primary-green);
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo { height: 60px; }
+
+        h1 {
+            font-weight: 700;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            text-decoration: underline;
+            text-underline-offset: 5px;
+            letter-spacing: 3px;
+        }
+
+        .main-content {
+            display: flex;
+            position: relative;
+            min-height: 500px;
+        }
+
+        form {
+            flex: 1;
+            padding: 40px;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            width: 100%;
+            max-width: 320px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 400;
+            font-size: 0.9rem;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--input-green);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 25px;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            accent-color: var(--dark-green);
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .totoro-bg {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.9;
+        }
+
+        button {
+            background-color: var(--dark-green);
+            color: white;
+            border: none;
+            padding: 12px 45px;
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            width: fit-content;
+            margin-top: 10px;
+        }
+
+        footer {
+            background-color: var(--primary-green);
+            padding: 8px;
+            text-align: center;
+            font-size: 0.7rem;
+            font-weight: 400;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.5rem; }
+            .totoro-bg { height: 60%; opacity: 0.3; }
+            .main-content { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <img src="totoro_pan.png" alt="Icono" class="logo">
+            <h1>TOTORO LINE</h1>
+        </header>
+
+        <main class="main-content">
+            <form id="registroForm">
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" id="nombre" placeholder="Ej: Juan Perez">
+                </div>
+
+                <div class="form-group">
+                    <label>Género</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" name="g" id="h" value="Hombre"> <label for="h">Hombre</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" name="g" id="m" value="Mujer"> <label for="m">Mujer</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>País de Residencia</label>
+                    <select id="pais">
+                        <option value="">Selecciona...</option>
+                        <option value="Mexico">México</option>
+                        <option value="España">España</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Fecha de Nacimiento</label>
+                    <input type="date" id="fecha">
+                </div>
+
+                <div class="form-group">
+                    <label>Teléfono</label>
+                    <input type="tel" id="telefono" placeholder="33 1234 5678">
+                </div>
+
+                <div class="form-group" style="max-width: 100%; display: flex; align-items: center; gap: 15px; margin-top: 10px;">
+                    <input type="checkbox" id="acepto">
+                    <label for="acepto" style="margin-bottom: 0;">Acepto terminos y condiciones</label>
+                </div>
+
+                <button type="submit">Enviar</button>
+            </form>
+
+            <img src="ghibli_museum.png" alt="" class="totoro-bg">
+        </main>
+
+        <footer>
+            © 2026 Totoro Line Intellectual Property. Todos los derechos reservados.
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('registroForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const nombre = document.getElementById('nombre').value.trim();
+            const genero = document.querySelector('input[name="g"]:checked');
+            const pais = document.getElementById('pais').value;
+            const fecha = document.getElementById('fecha').value;
+            const telefono = document.getElementById('telefono').value.trim();
+            const acepto = document.getElementById('acepto').checked;
+
+            if (!nombre || !genero || !pais || !fecha || !telefono) {
+                alert("Por favor, completa todos los campos del formulario.");
+                return;
+            }
+
+            if (!acepto) {
+                alert("Debes aceptar los términos y condiciones para continuar.");
+                return;
+            }
+
+            alert("¡Formulario enviado con éxito! Totoro está feliz.");
+
+            const datos = { nombre, genero: genero.value, pais, fecha, telefono }; 
+        });
+    </script>
+
+</body>
+</html>
