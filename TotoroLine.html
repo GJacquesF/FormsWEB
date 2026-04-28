@@ -221,18 +221,36 @@
     </div>
 
     <script>
+        const inputFecha = document.getElementById('fecha');
+        const hoy = new Date();
+        const fechaLimite = new Date(hoy.getFullYear() - 12, hoy.getMonth(), hoy.getDate());
+        inputFecha.max = fechaLimite.toISOString().split("T")[0];
+
         document.getElementById('registroForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
             const nombre = document.getElementById('nombre').value.trim();
             const genero = document.querySelector('input[name="g"]:checked');
             const pais = document.getElementById('pais').value;
-            const fecha = document.getElementById('fecha').value;
+            const fechaValue = document.getElementById('fecha').value;
             const telefono = document.getElementById('telefono').value.trim();
             const acepto = document.getElementById('acepto').checked;
 
-            if (!nombre || !genero || !pais || !fecha || !telefono) {
+            if (!nombre || !genero || !pais || !fechaValue || !telefono) {
                 alert("Por favor, completa todos los campos del formulario.");
+                return;
+            }
+
+            const fechaNac = new Date(fechaValue);
+            let edad = hoy.getFullYear() - fechaNac.getFullYear();
+            const mes = hoy.getMonth() - fechaNac.getMonth();
+            
+            if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNac.getDate())) {
+                edad--;
+            }
+
+            if (edad < 12) {
+                alert("Lo sentimos, debes tener al menos 12 años para unirte a Totoro Line.");
                 return;
             }
 
@@ -241,9 +259,10 @@
                 return;
             }
 
-            alert("¡Formulario enviado con éxito! Totoro está feliz.");
+            alert("¡Formulario enviado con éxito! Totoro está feliz. :P");
 
-            const datos = { nombre, genero: genero.value, pais, fecha, telefono }; 
+            const datos = { nombre, genero: genero.value, pais, fecha: fechaValue, telefono }; 
+            console.log(datos);
         });
     </script>
 
